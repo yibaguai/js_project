@@ -1,0 +1,90 @@
+@import "./components/base.scss";
+@import "./components/header.scss";
+@import "./components/footer.scss";
+@import "../libs/font/iconfont.css";
+
+main{
+	width: 1190px;
+	height: 515px;
+	margin: 0 auto;
+	padding: 40px 0 80px;
+	.login-left{
+		float: left;
+		width: 530px;
+		>p:nth-of-type(1){
+			height: 50px;
+			border-bottom: 1px solid #000;
+		}
+		form{
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			margin-top: 12px;
+			label:nth-of-type(1){
+				font-size: 14px;
+			};
+			label:nth-of-type(2){
+				font-size: 12px;
+				height: 47px;
+			};
+			#userName,#userPsd{
+				width: 376px;
+				height: 28px;
+				padding-left: 10px;
+				margin-bottom: 15px;
+			}
+			#loginBtn{
+				cursor:pointer;
+				width: 140px;
+				height: 45px;
+				background-color: #000;
+				color: #fff;
+				border: none;
+				margin-top: 10px;
+			}
+			.login-forget{
+				margin: 15px 0 38px;
+				a{
+					font-size: 10px;
+					color: #aaa;
+				}
+			}
+		}
+		>p:nth-of-type(2){
+			line-height: 33px;
+			font-size: 15px;
+		}
+		>a{
+			color: #000;
+			font-size: 14px;
+			i{
+				font-size: 20px !important;
+				margin-right: 30px;
+			}
+		}
+	}
+	.login-right{
+		float: right;
+		width: 530px;
+		border-top: 1px solid #000;
+		margin-top: 50px;
+		>p:nth-child(1){
+			font-size: 14px;
+		}
+		>p:nth-child(2){
+			font-size: 12px;
+			height: 47px;
+		}
+		a{
+			display: block;
+			text-align: center;
+			line-height: 45px;
+			width: 140px;
+			height: 45px;
+			background-color: #000;
+			color: #fff;
+			border: none;
+			margin-top: 10px;
+		}
+	}
+}

@@ -1,0 +1,24 @@
+@import "./components/base.scss";
+@import "./components/header.scss";
+@import "./components/footer.scss";
+@import "../libs/font/iconfont.css";
+
+main{
+	width: 1190px;
+	height: 515px;
+	margin: 0 auto;
+	padding: 40px 0 80px;
+	.register-left{
+		float: left;
+		width: 530px;
+		form{
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+	}
+	.register-left{
+		float: left;
+		width: 530px;
+	}
+}

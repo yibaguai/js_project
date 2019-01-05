@@ -1,0 +1,19 @@
+@import "./components/base.scss";
+@import "./components/header.scss";
+@import "./components/footer.scss";
+@import "../libs/font/iconfont.css";
+
+.inner-basket{
+	width: 1190px;
+	min-height: 840px;
+	margin: 0 auto;
+	font-size: 17px;
+	span{
+		box-sizing: border-box;
+		float: left;
+		width: 100%;
+		padding: 40px 0 30px;
+		margin: 0 10px;
+		border-bottom: 1px solid #000;
+	}
+}

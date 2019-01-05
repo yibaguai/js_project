@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<link rel="stylesheet" type="text/css" href="/css/login.css">
+		<script type="text/javascript" src="/libs/require/require.js" data-main="/js/login.js"></script>
+	</head>
+	<body>
+		<!-- 网页复用header -->
+		<header></header>
+
+		<!-- 主体 -->
+		<main>
+			<div class="login-left">
+				<p>我的账户</p>
+				<form action="register_submit" method="get" accept-charset="utf-8">
+					<label><span>登录</span></label>
+					<label><p>请在此处输入您的账户名和密码</p></label>
+					<label for="userName" id="userName"></label>
+					<input type="text" name="userName" id="userName" placeholder="用户名*">
+					<label for="userName"></label>
+					<input type="password" name="userPsd" id="userPsd" placeholder="密码*">
+					<label><input type="button" name="loginBtn" value="登录" id="loginBtn"></label>
+					<label  class="login-forget"><a href="javascript:;">忘记密码?</a></label>
+				</form>
+				<p>你还可以用其它账号登录</p>
+				<a href="javascript:;"><i class="iconfont icon-weibo"></i>使用新浪微博登录</a>
+			</div>
+
+			<div class="login-right">
+				<p>创建网站账户</p>
+				<p>请在此处创建您的账户，注册网站账户后您的购物流程将会更加便利，并且可以通过我的万宝龙进行订单以及收藏夹管理等</p>
+				<!-- <input type="button" name="" value="创建账户"> -->
+				<a href="/html/register.html">创建账户</a>
+			</div>
+		</main>
+
+		<!-- 网站服用footer -->
+		<footer></footer>
+	</body>
+</html>
