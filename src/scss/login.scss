@@ -25,7 +25,7 @@ main{
 			};
 			label:nth-of-type(2){
 				font-size: 12px;
-				height: 47px;
+				height: 20px;
 			};
 			#userName,#userPsd{
 				width: 376px;
@@ -69,6 +69,7 @@ main{
 		border-top: 1px solid #000;
 		margin-top: 50px;
 		>p:nth-child(1){
+			margin-top: 12px;
 			font-size: 14px;
 		}
 		>p:nth-child(2){

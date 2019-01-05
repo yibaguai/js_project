@@ -11,14 +11,57 @@ main{
 	.register-left{
 		float: left;
 		width: 530px;
+		>p:nth-child(1){
+			height: 55px;
+			font-size: 16px;
+		}
+		>p:nth-child(2){
+			height: 30px;
+			font-size: 12px;
+		}
 		form{
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
+			.registerPut{
+				width: 376px;
+				height: 28px;
+				padding-left: 10px;
+				margin-bottom: 15px;
+			}
+			.registerWarn{
+				line-height: 20px;
+				font-size: 12px;
+				width: 376px;
+			}
+			#registerBtn{
+				cursor:pointer;
+				width: 140px;
+				height: 45px;
+				background-color: #000;
+				color: #fff;
+				border: none;
+				margin-top: 25px;
+			}
 		}
 	}
-	.register-left{
-		float: left;
+	.register-right{
+		float: right;
 		width: 530px;
+		margin-top: 55px;
+		p{
+			font-size:14px;
+		}
+		ul{
+			li{
+				font-weight: border;
+				font-size: 12px;
+				i{
+					margin-right: 10px;
+					line-height: 16px;
+					font-size: 10px !important;
+				}
+			}
+		}
 	}
 }

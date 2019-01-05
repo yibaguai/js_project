@@ -13,21 +13,21 @@
 		<!-- 主体 -->
 		<main>
 			<div class="register-left">
-				<p>我的账户</p>
+				<p>万宝龙账号注册</p>
 				<p>创建万宝龙账号只需填写以下信息并输入你的邮箱地址和密码</p>
 				<form action="register_submit" method="get" accept-charset="utf-8">
 					<label for="userName" id="userName"></label>
-					<input type="text" name="userName" id="userName" placeholder="用户名*">
+					<input type="text" name="userName" id="userName" placeholder="用户名*" class="registerPut">
 					<label for="userName" id="userEmail"></label>
-					<input type="email" name="userEmail" id="userEmail" placeholder="邮箱地址*">
+					<input type="email" name="userEmail" id="userEmail" placeholder="邮箱地址*" class="registerPut">
 					<label for="userName" id="userPsd"></label>
-					<input type="password" name="userPsd" id="userPsd" placeholder="新密码*">
+					<input type="password" name="userPsd" id="userPsd" placeholder="新密码*" class="registerPut">
 					<label for="userName" id="userPsdr"></label>
-					<input type="password" name="userPsdr" id="userPsdr" placeholder="新密码确认*">
-					<label>
+					<input type="password" name="userPsdr" id="userPsdr" placeholder="新密码确认*" class="registerPut">
+					<label class="registerWarn">
 						<p>密码至少为8个字符，须包括大写、小写字母、数字，请勿连续使用二个以上的相同字符。</p>
 					</label>
-					<label>
+					<!-- <label>
 						<input type="checkbox" name="" value="">我愿意收到来自万宝龙的服务和产品信息
 					</label>
 					<label>
@@ -36,12 +36,12 @@
 					<label>
 						<img src="" alt="">验证码
 						<input type="text" name="" value="">
-					</label>
-					<label><input type="button" name="" value="创建我的账户"></label>
+					</label> -->
+					<label><input type="button" name="" value="创建我的账户" id="registerBtn"></label>
 				</form>
 			</div>
 			<div class="register-right">
-				<p></p>
+				<p>注册万宝龙网上账户的4个理由：</p>
 				<ul>
 					<li><i class="iconfont icon-yuanxingweixuanzhong"></i>下次登录可以看到你的收藏里保存的信息</li>
 					<li><i class="iconfont icon-yuanxingweixuanzhong"></i>使用已保存的信息便于快速结算</li>
