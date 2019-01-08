@@ -241,6 +241,7 @@
 			display: flex;
 			justify-content: space-between;
 			dl{
+				position: relative;
 				width: 382px;
 				dt{
 					height: 520px;
@@ -274,12 +275,16 @@
 						font-weight: 600;
 					}
 					p:nth-child(3){
-						font-size: 13px;
+						font-size: 14px;
 					}
-					p:nth-child(4){
-						font-size: 12px;
+					span:nth-child(4){
+						position: absolute;
+						top: 480px;
+						right: 30px;
+						cursor: pointer;
 						i{
-							margin-right: 13px;
+							font-size: 20px;
+							font-weight: 900;
 						}
 					}
 				}

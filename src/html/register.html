@@ -15,15 +15,15 @@
 			<div class="register-left">
 				<p>万宝龙账号注册</p>
 				<p>创建万宝龙账号只需填写以下信息并输入你的邮箱地址和密码</p>
-				<form action="register_submit" method="get" accept-charset="utf-8">
-					<label for="userName" id="userName"></label>
-					<input type="text" name="userName" id="userName" placeholder="用户名*" class="registerPut">
-					<label for="userName" id="userEmail"></label>
-					<input type="email" name="userEmail" id="userEmail" placeholder="邮箱地址*" class="registerPut">
-					<label for="userName" id="userPsd"></label>
-					<input type="password" name="userPsd" id="userPsd" placeholder="新密码*" class="registerPut">
-					<label for="userName" id="userPsdr"></label>
-					<input type="password" name="userPsdr" id="userPsdr" placeholder="新密码确认*" class="registerPut">
+				<form action="register_submit" method="get" accept-charset="utf-8" id="register-form">
+					<label for="userName"></label>
+					<input type="text" name="userName" id="registerName" placeholder="用户名*" class="registerPut" value="">
+					<label for="userEmail"></label>
+					<input type="email" name="userEmail" id="registerEmail" placeholder="邮箱地址*" class="registerPut" value="">
+					<label for="userPsd"></label>
+					<input type="password" name="userPsd" id="registerPsd" placeholder="新密码*" class="registerPut" value="">
+					<label for="userName"></label>
+					<input type="psssword" name="userPsdr" id="registerPsdr" placeholder="新密码确认*" class="registerPut" value="">
 					<label class="registerWarn">
 						<p>密码至少为8个字符，须包括大写、小写字母、数字，请勿连续使用二个以上的相同字符。</p>
 					</label>

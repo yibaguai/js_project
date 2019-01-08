@@ -1,0 +1,16 @@
+
+	<script type="text/html" id="list-template">
+		{{each list item i}}
+				<dl class="dl" data-id="{{ item.id }}">
+					<dt class="dt">
+						<img class="new-bk dt" src="{{ item.img1 }}" alt="">
+						<img class="new-no dt" src="{{ item.img2 }}" alt="">
+					</dt>
+					<dd>
+						<p class="goods-name">{{ item.name }}</p>
+						<p class="goods-price">￥<span>{{ item.price }}</span></p>
+						<a class="buy" class="new-no"><i class="iconfont icon-gouwudai"></i>加入购物车</a>
+					</dd>
+				</dl>
+		{{/each}}
+	</script>

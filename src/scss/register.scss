@@ -23,6 +23,9 @@ main{
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
+			input{
+				border: 1px solid;
+			}
 			.registerPut{
 				width: 376px;
 				height: 28px;

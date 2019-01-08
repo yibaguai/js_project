@@ -1,6 +1,7 @@
 @import "./components/base.scss";
 @import "./components/header.scss";
 @import "./components/footer.scss";
+@import "./components/item.scss";
 @import "../libs/font/iconfont.css";
 
 .new-banner{
@@ -35,58 +36,11 @@
 			};
 		}
 	}
-.new-list{
+#new-list{
 	width: 1190px;
 	height: 1740px;
 	margin: 0 auto;
-	display: flex;
-	justify-content: center;
+	 display: flex;
+	justify-content: flex-start;
 	flex-wrap: wrap;
-	dl{
-		padding: 16px;
-		width: 292px;
-		height: 392px;
-		dt{
-			position: relative;
-			width: 235px;
-			height: 235px;
-			img{
-				position: absolute;
-				width: 100%;
-				height: 100%
-			}
-			.new-ac{
-				display: block;
-			}
-		}
-		dd{
-			width: 100%;
-			text-align: center;
-			font-size: 12px;
-			p:nth-child(2){
-				margin: 17px 0;
-			}
-			a{
-				cursor: pointer;
-				color: #fff;
-				line-height: 44px;
-				display: block;
-				width: 100%;
-				height: 44px;
-				background-color: #000;
-				i{
-					margin-right: 10px;
-				}
-			}
-		}
-		.new-no{
-				display: none;
-			}
-	}
-	dl:hover{
-		border: 1px solid #000;
-		.new-no{
-			display: block;
-			}
-		};
 }
