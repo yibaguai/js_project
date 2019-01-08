@@ -17,13 +17,12 @@ require(["./requirejs.config"], () => {
 					userPsd = $("#registerPsd"),
 					userPsdr = $("#registerPsdr"),
 					registerBtn = $("#registerBtn");
-				// console.log($("#userName").val());
 
 
 				var nameReg = /^[0-9a-zA-Z_]{1,10}$/,//用户名：数字，字母，下划线组成的1-10位
 					psdReg = /^[0-9a-zA-Z_]{6,16}$/,//密码：数字，字母，下划线组成的6-16位
 					mailReg = /^[0-9a-zA-Z]{1,10}@[0-9a-zA-Z]{1,5}\.[0-9a-zA-Z]{1,10}$/;//邮箱：1-10位数字或字母 + @ + 1-5位数字或字母 . + 1-10位数字或字母
-/*
+
 				//为每项验证是否通过做标记	
 				var a = false, b = false, c = false, d = false;
 
@@ -36,6 +35,8 @@ require(["./requirejs.config"], () => {
 						userName.css("border", "1px solid")
 						a = true;
 					};
+					console.log("a"+a);
+
 				})
 
 				//邮箱验证
@@ -47,6 +48,8 @@ require(["./requirejs.config"], () => {
 						userEmail.css("border", "1px solid")
 						b = true;
 					};
+					console.log("b"+b);
+
 				})
 				//密码验证
 				userPsd.blur(function(){
@@ -57,6 +60,8 @@ require(["./requirejs.config"], () => {
 						userPsd.css("border", "1px solid")
 						c = true;
 					};
+					console.log("c"+c);
+
 				})
 				//密码确认
 				userPsdr.blur(function(){
@@ -67,28 +72,29 @@ require(["./requirejs.config"], () => {
 						userPsdr.css("border", "1px solid")
 						d = true;
 					};
-				})*/
-				// this.registerBtn(a,b,c,d);
-			// registerBtn(a,b,c,d){
+
+				})
 				//注册按钮
 				$("#registerBtn").click(function(){
-					// console.log(userName.val());
-					$.ajax({
-						type : "POST",
-						url : "http://localhost/js_project/api/v1/register.php",
-						dataType : "json",
-						data :{
-							"username" :userName.val(),
-							"email" : userEmail.val(),
-							"psssword" : userPsd.val()
-						},
-						success:function(res){
-							if(res.res_code){
-								// console.log(res);
+					if(a&&b&&c&&d){
+						$.ajax({
+							type : "POST",
+							url : "http://localhost/js_project/api/v1/register.php",
+							dataType : "json",
+							data :{
+								"username" :userName.val(),
+								"email" : userEmail.val(),
+								"password" : userPsd.val()
+							},
+							success:function(res){
+								console.log(res.res_message);
 							}
-						}
-					})
+						})
+					}else{
+						console.log("请按要求填写信息");
+					}
 				})
+
 				/*$("#registerBtn").click(function(){
 					$.ajax({
 						type:"post",
