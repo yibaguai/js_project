@@ -12,22 +12,17 @@ require(["./requirejs.config"], () => {
 				newList(){
 					item.init(url.baseUrlRap+"/new-list", "new-list");
 				}
-
+				//按钮切换页面
 				pageGo(){
 					$("#new-list").on("click", function(e){
 						var target = e.target || e.srcElement;
 						if(target.id === "dl"){
-								// console.log(111);
-								// console.log(this);
 								$.ajax({
 									url: url.baseUrlRap+"/new-list",
 									type: "get",
 									success: (res) => {
 										if(res.res_code === 1){
-											// console.log(this);
 											let list = res.res_body;
-											// console.log(res.res_body);
-											// console.log(res.res_body[0].no);
 										}
 									}
 								})
@@ -35,6 +30,7 @@ require(["./requirejs.config"], () => {
 							if(target.id === "buy"){
 								// console.log(this);
 								var _this = this;
+								// e.stopPropagation();
 							}
 
 				})

@@ -29,10 +29,10 @@ define(["jquery", "template"], ($, template) => {
 								// }
 							})
 
-							// $(".buy").on("click",function(e){
-							// 	console.log(111);
-							// 	e.stopPropagation();
-							// })
+							$(".buy").on("click",function(e){
+								console.log("加入购物车");
+								e.stopPropagation();
+							})
 
 						}
 					}

@@ -141,10 +141,11 @@
 	}
 	.details-bottom{
 		div{
-		display: none;
+			font-weight: 900;
+			display: none;
+			text-align: center;
 		}
 		.details-describe{
-			text-align: center;
 			font-size: 13px;
 			line-height: 27px;
 		}
