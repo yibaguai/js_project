@@ -8,6 +8,7 @@ require.config({
 		"footer" : "js/components/footer",
 		"item" : "js/components/item",
 		"url" : "js/components/url",
+		"cart" : "js/components/cart",
 		"template" : "libs/template/template-web"
 	},
 	//不符合AMD规范的模块，垫片

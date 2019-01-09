@@ -1,6 +1,6 @@
 
 /*商品展示模块*/
-define(["jquery", "template"], ($, template) => {
+define(["jquery", "template", "cart"], ($, template, cart) => {
 	class Item{
 		constructor(){
 			// this.init();
@@ -20,28 +20,31 @@ define(["jquery", "template"], ($, template) => {
 							let list = res.res_body;
 							let html = template("list-template", {list: res.res_body});
 							$("#"+id).html(html);
-							// console.log();
-							// this.pageCut();
-							$(".dl").on("click", function(e){
-								// var target = e.target || e.srcElement;
-								// if(target.className === "dl"){
-									location.href = "/html/details.html?id="+$(".dl").data("id");
-								// }
+							//带着id跳转到详情页
+							$(".dl").on("click", function(){
+								// console.log($(this).data("id"));
+								location.href = "/html/details.html?id="+$(this).data("id");
+								// console.log($(this));
 							})
-
-							$(".buy").on("click",function(e){
-								console.log("加入购物车");
-								e.stopPropagation();
-							})
-
+							this.shopping(list);
 						}
 					}
 				})
 			})
 		}
-
-		shopping(){
-			
+		//加入购物车
+		shopping(list){
+			$(".buy").on("click",function(e){
+				//取出选取商品的id
+				let id = $(this).data("id");
+				$.each(list, function(key, value){
+					if(value.id===id){
+						//将所选商品全部信息传入cart，调用add方法
+						cart.add(value);
+					}
+				})
+				e.stopPropagation();
+			})
 		}
 
 	}

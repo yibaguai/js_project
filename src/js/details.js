@@ -1,7 +1,7 @@
 //详情页
 require(["./requirejs.config"], () => {
 	//引入需要依赖的模块
-	require(["jquery","url", "header", "footer"], ($, url) => {
+	require(["jquery","url", "cart", "header", "footer"], ($, url, cart) => {
 		class Details{
 			constructor(){
 				/*this.index = 0;
@@ -31,9 +31,10 @@ require(["./requirejs.config"], () => {
 			        data: searchObj,
 			        dataType:"json",
 			        success: (res)=>{
-			        	// console.log(res);
-			        	this.textUse(res.res_body);
-			        	this.imgUse(res.res_body);
+			        	let value = res.res_body;
+			        	this.textUse(value);
+			        	this.imgUse(value);
+			        	this.shopping(value);
 			    	}
 
 			    })
@@ -43,6 +44,7 @@ require(["./requirejs.config"], () => {
 				// console.log(body);
 				$("#details-name").text(body.name);
 				$("#details-price").text("￥"+body.price+".00");
+				$("#details-id").text(body.id);
 				$("#details-describe").text(body.describe);
 				$("#details-more").text(body.more);
 				$("#details-about").text(body.about);
@@ -82,6 +84,23 @@ require(["./requirejs.config"], () => {
 					}else{
 						$(".details-ul").stop().animate({left : -index*liWidth+"px"},"1000");
 					}
+				})
+			}
+			//加入购物车
+			shopping(value){
+				$(".buy").on("click",function(e){
+					console.log(111);
+					cart.add(value);
+/*
+					//取出选取商品的id
+					let id = $(this).data("id");
+					$.each(list, function(key, value){
+						if(value.id===id){
+							//将商品全部信息传入cart的add方法
+							cart.add(value);
+						}
+					})
+					e.stopPropagation();*/
 				})
 			}
 

@@ -1,4 +1,4 @@
-define(["jquery"], () => {
+define(["jquery", "cookie"], () => {
 	class Header{
 		constructor(){
 			this.init();
@@ -11,7 +11,12 @@ define(["jquery"], () => {
 					resolve();
 				})
 			}).then(() => {
-
+				//通过cookie将购物车里的商品数量添加到头部显示
+				let count=0;
+				$.each(JSON.parse($.cookie("cart")),function(key, value){
+					count+=value.num;
+				})
+				$("#headerNum").html(count);
 			})
 		}
 		//汉堡菜单点击,弹出导航栏

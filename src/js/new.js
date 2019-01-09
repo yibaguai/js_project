@@ -6,14 +6,14 @@ require(["./requirejs.config"], () => {
 			class New{
 				constructor(){
 					this.newList();
-					this.pageGo();
+					// this.pageGo();
 				}
 				//商品列表模块
 				newList(){
 					item.init(url.baseUrlRap+"/new-list", "new-list");
 				}
 				//按钮切换页面
-				pageGo(){
+				/*pageGo(){
 					$("#new-list").on("click", function(e){
 						var target = e.target || e.srcElement;
 						if(target.id === "dl"){
@@ -28,21 +28,21 @@ require(["./requirejs.config"], () => {
 								})
 					}
 							if(target.id === "buy"){
-								// console.log(this);
+								console.log(list);
 								var _this = this;
 								// e.stopPropagation();
 							}
 
 				})
-				}
+				}*/
 			}
 			return new New();
 
 
 
 
-
-		/*$(".new-list").on("click", function(e){
+/*
+		$(".new-list").on("click", function(e){
 			// e = e || window.event;
 			var target = e.target || e.srcElement;
 			if(target.id === "buy"){
@@ -79,10 +79,9 @@ require(["./requirejs.config"], () => {
 			$.cookie("cart", encodeURIComponent(str) ,{
 				expires:30,
 				path:"/"
-			});
+			});*/
 			// console.log(JSON.parse(decodeURIComponent($.cookie("cart"))));
 
-		})*/
+		})
 
 	})
-})
