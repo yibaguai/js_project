@@ -1,29 +1,19 @@
 //登录页
 require(["./requirejs.config"], () => {
 	//引入需要依赖的模块
-	require(["jquery", "header", "footer", "cookie"], () => {
+	require(["jquery", "header", "footer", "cookie"], ($, header) => {
+		// header.headerBasket();
 		class Login{
 			constructor(){
 				this.messageReg();
 			}
 			messageReg(){
-				var userName = $("#loginName"),
+				let userName = $("#loginName"),
 					userPsd = $("#loginPsd"),
 					loginBtn = $("#loginBtn");
-
-				/*var flag = false;
-				//取出注册过的账号信息
-				var arr = JSON.parse($.cookie("user"));
-
-				//如果有cookie默认填入第一个账号的用户名和密码
-				if(arr[0]){
-					userName.value = arr[0].name;
-					pwd.value = arr[0].pwd;
-				}*/
-
+				let _this = this;
 				//点击登录后判断信息是否正确
-				$("#loginBtn").click(function(){
-					console.log(userName.val(),userPsd.val())
+				$("#loginBtn").click( (e) => {
 					$.ajax({
 							type : "POST",
 							url : "http://localhost/js_project/api/v1/login.php",
@@ -33,34 +23,46 @@ require(["./requirejs.config"], () => {
 								"password" : userPsd.val()
 							},
 							success:function(res){
-								console.log(res);
 								if(res.res_code){
 									console.log("登录成功");
 									//登录成功后将用户信息存入cookie
 									var str = JSON.stringify(res.res_body);
-									$.cookie("user", encodeURIComponent(str) ,{
+									_this.remberme(str);
+									/*$.cookie("user", encodeURIComponent(str) ,{
 										expires:30,
 										path:"/"
-									});
-
+									});*/
+									if(confirm("登录成功,到首页？")){
+										location.href = "/index.html";
+									}
+									//登录成功后直接修改header显示
+									$("#login").html(JSON.parse(decodeURIComponent($.cookie("user"))).username);
 								}else{
-									console.log("用户不存在");
+									//不满足要求的栏标红
+									if(res.res_body==="用户名不存在"){
+										$("#loginName").css("border", "1px solid red");
+										$("#loginPsd").css("border", "1px solid red");
+									}else if(res.res_body==="密码错误"){
+										$("#loginName").css("border", "1px solid #000");
+										$("#loginPsd").css("border", "1px solid red").val("");
+									}
+									console.log(res.res_body);
 								}
-								// console.log("1111");
-								// console.log(res.res_message);
 							}
 						})
-					/*for(let i = 0; i < arr.length; i++){
-						if((userName.value === arr[i].name || userName.value === arr[i].mail) && pwd.value === arr[i].pwd){
-							flag = true;
-						}
-					}
-					if(flag){
-						console.log("登录成功");
-					}else{
-						console.log("账号不存在");
-					}*/
 				})
+			}
+			remberme(str){
+				if($("#remberme[type='checkbox']").prop("checked")){
+					$.cookie("user", encodeURIComponent(str) ,{
+						expires:7,
+						path:"/"
+					});
+				}else{
+					$.cookie("user", encodeURIComponent(str),{
+						path:"/"
+					});
+				}
 			}
 		}
 		return new Login();

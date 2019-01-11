@@ -1,7 +1,7 @@
 //购物车
 require(["./requirejs.config"], () => {
 	//引入需要依赖的模块
-	require(["jquery", "header", "footer", "cookie"], () => {
+	require(["jquery", "header", "footer", "cookie"], ($, header) => {
 		class Basket{
 			constructor(){
 				//商品总数量
@@ -9,11 +9,10 @@ require(["./requirejs.config"], () => {
 				//商品总价
 				this.total = 0;
 				this.arr = $.cookie("cart") ? $(JSON.parse($.cookie("cart"))) : [];
+				//根据cookie渲染页面
 				this.getGoods();
-				this.basketBtn()
-				// this.reduce();
-				this.add();
-				this.delete();
+				//操作按钮
+				this.basketBtn();
 			}
 			//购物车初始页面
 			init(){
@@ -52,23 +51,28 @@ require(["./requirejs.config"], () => {
 						<p><a href="/html/new.html">继续购物</a><a href="javascript:;">继续结算</a></p>
 					`)
 				}
-				// console.log(count);
 			}
+			//操作按钮
 			basketBtn(){
 				let _this = this;
+				//减
 				$(".basket-reduce").click(function(){
 					_this.reduce(this);
 				})
+				//加
 				$(".basket-add").click(function(){
 					_this.add(this);
-				}
+				})
+				//删
 				$(".basket-delete").click(function(){
+					console.log(1111);
 					_this.delete(this);
-				}
+				})
+				// header.headerBasket();
 			}
 			//减
 			reduce(othis){
-				//本身是othis，全局是_this；
+				//本身元素是othis，全局是_this；
 				let _this = this;
 					//获取点击商品的下标
 					let figure = $(othis).parent().parent().parent().index();
@@ -80,10 +84,10 @@ require(["./requirejs.config"], () => {
 					goodsNum--;
 					if(goodsNum < 0){
 						if(confirm("删除该商品？")){
-								// _this.delete();
-
-								_this.arr.splice(figure,1);
+								$(othis).parent().parent().parent().remove();
 								console.log(_this);
+								_this.arr.splice(figure,1);
+								_this.cookieChange(_this.arr);
 							}else{
 								//取消删除就将商品数量设置为0
 								$(othis).next().html(0);
@@ -95,8 +99,6 @@ require(["./requirejs.config"], () => {
 							_this.changeTotal();
 							$(othis).next().html(goodsNum);
 						}
-						let headernum = Number($("#headerNum").html());
-						$("#headerNum").html(--headernum);
 			}
 			//加
 			add(othis){
@@ -113,14 +115,9 @@ require(["./requirejs.config"], () => {
 					_this.cookieChange(_this.arr);
 					_this.changeTotal();
 					$(othis).prev().html(goodsNum);
-					let headernum = Number($("#headerNum").html());
-					$("#headerNum").html(++headernum);
 			}
 			//删
 			delete(othis){
-				// console.log(111);
-				// let arr =[].slice.call(this.arr);
-				// console.log([].slice.call(this.arr));
 				let _this=this;
 					//获取点击商品的下标
 					let figure = $(othis).parent().parent().parent().index();
@@ -128,23 +125,15 @@ require(["./requirejs.config"], () => {
 					let theGoods = $(_this.arr).eq(figure).get(0);
 					//获取页面展示商品数量
 					let goodsNum = $(othis).parent().next().next().find(".basket-num").html();
+					// console.log(figure);
 					_this.arr.splice(figure,1);
 					//删除商品所在dl
 					$(othis).parent().parent().parent().remove();
 					//改变显示商品总数量
 					$(othis).prev().html(goodsNum);
-					if($(".basket-list:has(dl)").length){
-						_this.cookieChange(_this.arr);
-						_this.changeTotal();
+					_this.cookieChange(_this.arr);
+					_this.changeTotal();
 
-					}else{
-						//删除所有商品后，删除cookie
-						$.cookie("cart", '' ,{
-							expires:-1,
-							path:"/"
-						});
-						_this.init();
-					}
 			}
 			//计算总价
 			changeTotal(){
@@ -152,6 +141,7 @@ require(["./requirejs.config"], () => {
 				this.total=0;
 				$.each(this.arr, (key, value)=>{
 					//商品总数
+					// console.log(value);
 					this.count += value.num;
 					//商品总价
 					this.total += value.num*value.price;
@@ -161,11 +151,25 @@ require(["./requirejs.config"], () => {
 			}
 			//改变cookie
 			cookieChange(arr){
-				var str = JSON.stringify(arr);
-				$.cookie("cart", str ,{
-					expires:30,
-					path:"/"
-				});
+				let _this = this;
+				if($(".basket-list:has(dl)").length){
+					var str = JSON.stringify(arr);
+					$.cookie("cart", str ,{
+						expires:30,
+						path:"/"
+					});
+					//每次修改cookie后修改头部显示购物车商品数
+					header.headerBasket();
+				}else{
+					console.log($(".basket-list:has(dl)").length);
+						_this.init();
+						//删除所有商品后，删除cookie
+						$.cookie("cart", '' ,{
+								expires:-1,
+								path:"/"
+						});
+					header.headerBasket();
+				}
 			}
 		}
 		return new Basket();

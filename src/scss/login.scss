@@ -27,6 +27,18 @@ main{
 				font-size: 12px;
 				height: 20px;
 			};
+			label:nth-of-type(5){
+				font-size: 12px;
+				height: 20px;
+				display: flex;
+				align-items: center;
+				width: 100px;
+			};
+			.lBtn{
+				font-size: 12px;
+				height: 45px;
+				width: 140px;
+			};
 			#loginName,#loginPsd{
 				width: 376px;
 				height: 28px;
@@ -48,6 +60,10 @@ main{
 					font-size: 10px;
 					color: #aaa;
 				}
+			}
+			#remberme{
+				line-height: 20px;
+
 			}
 		}
 		>p:nth-of-type(2){

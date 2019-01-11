@@ -4,158 +4,102 @@ require(["./requirejs.config"], () => {
 	require(["jquery", "header", "footer", "cookie"], () => {
 		class Register{
 			constructor(){
-				// this.userName = $("#registerName");
-				// this.userEmail = $("#registerEmail");
-				// this.userPsd = $("#registerPsd");
-				// this.userPsdr = $("#registerPsdr");
-				// this.registerBtn = $("#registerBtn");
-				this.messageReg();
+				this.a=false;
+				this.b=false;
+				this.c=false;
+				this.d=false;
+				this.e=false;
+				this.usernameReg();
+				this.userEmailReg();
+				this.userPsdReg();
+				this.userPsdrReg();
+				this.registerBtn();
 			}
-			messageReg(){
-				let userName = $("#registerName"),
-					userEmail = $("#registerEmail"),
-					userPsd = $("#registerPsd"),
-					userPsdr = $("#registerPsdr"),
-					registerBtn = $("#registerBtn");
-
-
-				var nameReg = /^[0-9a-zA-Z_]{1,10}$/,//用户名：数字，字母，下划线组成的1-10位
-					psdReg = /^[0-9a-zA-Z_]{6,16}$/,//密码：数字，字母，下划线组成的6-16位
-					mailReg = /^[0-9a-zA-Z]{1,10}@[0-9a-zA-Z]{1,5}\.[0-9a-zA-Z]{1,10}$/;//邮箱：1-10位数字或字母 + @ + 1-5位数字或字母 . + 1-10位数字或字母
-
-				//为每项验证是否通过做标记	
-				var a = false, b = false, c = false, d = false;
-
-				//用户名验证
-				userName.blur(function(){
+			//用户名验证
+			usernameReg(){
+				let userName = $("#registerName");
+				let nameReg = /^[0-9a-zA-Z_]{1,10}$/;//用户名：数字，字母，下划线组成的1-10位
+				userName.blur(()=>{
 					if(!nameReg.test(userName.val())){
 						userName.css("border", "1px solid red")
-						a = false;
+						this.a = false;
 					}else {
 						userName.css("border", "1px solid")
-						a = true;
+						this.a = true;
 					};
-					console.log("a"+a);
-
+					console.log("a"+this.a);
 				})
-
-				//邮箱验证
-				userEmail.blur(function(){
+				return this;
+			}
+			//邮箱验证
+			userEmailReg(){
+				let userEmail = $("#registerEmail");
+				let mailReg = /^[0-9a-zA-Z]{1,10}@[0-9a-zA-Z]{1,5}\.[0-9a-zA-Z]{1,10}$/;//密码：数字，字母，下划线组成的6-16位
+				userEmail.blur(()=>{
 					if(!mailReg.test(userEmail.val())){
 						userEmail.css("border", "1px solid red")
-						b = false;
+						this.b = false;
 					}else {
 						userEmail.css("border", "1px solid")
-						b = true;
+						this.b = true;
 					};
-					console.log("b"+b);
+					console.log("b"+this.b);
 
 				})
-				//密码验证
-				userPsd.blur(function(){
+				return this;
+			}
+			//密码验证
+			userPsdReg(){
+				let userPsd = $("#registerPsd");
+				let psdReg = /^[0-9a-zA-Z_]{6,16}$/;//邮箱：1-10位数字或字母 + @ + 1-5位数字或字母 . + 1-10位数字或字母
+				userPsd.blur(()=>{
 					if(!psdReg.test(userPsd.val())){
 						userPsd.css("border", "1px solid red")
-						c = false;
+						this.c = false;
 					}else {
 						userPsd.css("border", "1px solid")
-						c = true;
+						this.c = true;
 					};
-					console.log("c"+c);
-
+					console.log("c"+this.c);
 				})
-				//密码确认
-				userPsdr.blur(function(){
+				return this;
+			}
+			//密码确认
+			userPsdrReg(){
+				let userPsdr = $("#registerPsdr");
+				userPsdr.blur(()=>{
 					if(!userPsdr.val()){
 						userPsdr.css("border", "1px solid red")
-						d = false;
+						this.d = false;
 					}else {
 						userPsdr.css("border", "1px solid")
-						d = true;
+						this.d = true;
 					};
-
+					console.log("d"+this.d);
 				})
-				//注册按钮
-				$("#registerBtn").click(function(){
-					if(a&&b&&c&&d){
+			}
+			//注册按钮
+			registerBtn(){
+				$("#registerBtn").click(() => {
+					// this.usernameReg().userEmailReg().userPsdReg().userPsdrReg();
+					if(this.a&&this.b&&this.c&&this.d){
 						$.ajax({
 							type : "POST",
 							url : "http://localhost/js_project/api/v1/register.php",
 							dataType : "json",
 							data :{
-								"username" :userName.val(),
-								"email" : userEmail.val(),
-								"password" : userPsd.val()
+								"username" :$("#registerName").val(),
+								"email" : $("#registerEmail").val(),
+								"password" : $("#registerPsd").val()
 							},
 							success:function(res){
 								console.log(res.res_message);
 							}
 						})
 					}else{
-						console.log("请按要求填写信息");
+						console.log("红色框内信息不规范");
 					}
 				})
-
-				/*$("#registerBtn").click(function(){
-					$.ajax({
-						type:"post",
-						url:"http://localhost/js_project/api/v1/register.php",
-						dataType:"json",
-						data:{
-							"username": $.("#userName").val(),
-							"email": $.("#userPsd").val(),
-							"password": $.("#userEmail").val()
-						},
-						success:function(res){
-							if(res.res_code){
-								console.log(res);
-								// if(confirm("注册成功，去登录")){
-								// 	window.location.href = "login.html";
-								// }
-							}
-						}
-					})
-					//阻止表单的默认提交
-					e.preventDefault();
-					return false;
-					})*/
-						/*console.log(JSON.parse(decodeURIComponent($.cookie("user"))));
-					}
-					//每项验证是否通过
-					if(a&&b&&c&&d){
-						//将输入的数据保存为JSON格式
-						var obj = {
-							"name" : userName.val(),
-							"psd" : userPsd.val(),
-							"mail" : userEmail.val()
-						};
-						//判断cookie是否已经有值了,防止前面的用户信息被清除
-						var arr = $.cookie("user") ? JSON.parse($.cookie("user")) : [];
-						//判断该账号是否存在
-						var flag = false;
-						for(var j = 0; j < arr.length; j++){
-							//不能使用重复的用户名和邮箱
-							if(arr[j].name === obj.name || arr[j].mail === obj.mail){
-								console.log("该账号已经存在");
-								// $("input").css("border","1px solid red");
-								flag = true;
-								break;
-							}
-						}
-						//该账号没有被注册过
-						if(flag === false){
-							arr.push(obj);
-							console.log("注册成功");
-						}
-						//将验证通过的信息存入cookie
-						var str = JSON.stringify(arr);
-						$.cookie("user", encodeURIComponent(str) ,{
-							expires:30,
-							path:"/"
-						});
-					}else{
-						console.log("信息错误");
-						// $("input").css("border","1px solid red");
-					}*/
 			}
 		}
 		return new Register();

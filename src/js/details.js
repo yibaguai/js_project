@@ -1,16 +1,17 @@
 //详情页
 require(["./requirejs.config"], () => {
 	//引入需要依赖的模块
-	require(["jquery","url", "cart", "header", "footer"], ($, url, cart) => {
+	require(["jquery","url", "cart", "imgtab", "header", "footer"], ($, url, cart, imgtab) => {
 		class Details{
 			constructor(){
 				/*this.index = 0;
 				this.liWidth = $(".details-li").width();
 				this.len = 4;*/
 				this.tab();
-				// this.imgTab();
 				// this.page();
 				this.informationGet();
+				// this.imgUse();
+				// imgTab.init();
 			}
 			/*信息标签切换*/
 			tab(){
@@ -33,7 +34,7 @@ require(["./requirejs.config"], () => {
 			        success: (res)=>{
 			        	let value = res.res_body;
 			        	this.textUse(value);
-			        	this.imgUse(value);
+			        	imgtab.init(value, 460);
 			        	this.shopping(value);
 			    	}
 
@@ -49,11 +50,11 @@ require(["./requirejs.config"], () => {
 				$("#details-more").text(body.more);
 				$("#details-about").text(body.about);
 			}
-			//图片切换
+			/*//图片切换
 			imgUse(body){
-				// console.log(body.img_bag);
 				let count=0, index=0;
-				let len, liWidth=460
+				let len, liWidth=460;
+				//遍历，将图片插入ul
 				$.each(body.img_bag,function(key, value){
 					count++;
 					$(".details-ul").append(`<li><img src="${value}" alt=""></li>`);
@@ -62,19 +63,19 @@ require(["./requirejs.config"], () => {
 				//为第一个li添加class名
 				$(".details-ul li:first-child").addClass("details-li");
 				len = count;
-				/*将第一张图片复制一份到最后*/
+				//将第一张图片复制一份到最后
 				$(".details-ul").append($(".details-li").clone());
 				$(".details-ul").css({width: (len+1)*liWidth + "px"});
-				/*上一张*/
-				$("#details-goPrev").on("click",() =>{
+				//上一张
+				$(".details-goPrev").on("click",() =>{
 					if(--index < 0){
 						$(".details-ul").css({left : -len*liWidth+"px"});
 						index = len-1;
 					}
 					$(".details-ul").stop().animate({left : -index*liWidth+"px"},"1000");
 				})
-				/*下一张*/
-				$("#details-goNext").on("click",() => {
+				//下一张
+				$(".details-goNext").on("click",() => {
 					if(++index >= len){
 						console.log(this.index);
 						$(".details-ul").stop().animate({left : -len*liWidth+"px"},"1000",function(){
@@ -85,7 +86,7 @@ require(["./requirejs.config"], () => {
 						$(".details-ul").stop().animate({left : -index*liWidth+"px"},"1000");
 					}
 				})
-			}
+			}*/
 			//加入购物车
 			shopping(value){
 				$(".buy").on("click",function(e){
