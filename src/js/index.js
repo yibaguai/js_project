@@ -5,7 +5,9 @@ require(["./requirejs.config"], () => {
 		class Index{
 			constructor(){
 				this.banner();
+				this.indexNav();
 			}
+			//广告图轮播
 			banner(){
 				let value = {
 					img_bag : {
@@ -17,6 +19,19 @@ require(["./requirejs.config"], () => {
 					}
 				}
 				imgtab.init(value, 1520);
+			}
+			//图片导航栏
+			indexNav(){
+				$(".index-ul").css({"left": -281});
+				$(".index-nav .icon-jia").click(function(){
+					let ulLeft = $(this).parent().prev().css("left");
+					console.log(parseInt(ulLeft));
+					if(parseInt(ulLeft) < 0) ulLeft = 0;
+					else ulLeft = -281;
+					console.log(ulLeft);
+					$(this).parent().prev().stop().animate({left: ulLeft+"px", opacity:0.7},1000)
+					$(this).prev().html("");
+				});
 			}
 		}
 
